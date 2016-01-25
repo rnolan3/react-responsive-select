@@ -1,0 +1,11 @@
+.responseSelect {
+  background: yellow;
+  position: relative;
+
+  input {
+    left: -9999px;
+    opacity: 0;
+    position: absolute;
+    top: -9999px;
+  }
+}
