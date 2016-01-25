@@ -1,0 +1,14 @@
+.label {
+  background: #ccc;
+  height: 1em;
+  padding: .5em;
+
+  label {
+    min-height: 1em;
+    display: block;
+  }
+}
+
+.placeholder {
+  color: #999;
+}
