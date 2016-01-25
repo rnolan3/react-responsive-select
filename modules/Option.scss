@@ -1,0 +1,15 @@
+.option {
+  cursor: pointer;
+  display: block;
+  padding: .5em 1em;
+}
+
+.hover {
+  background: blue;
+  color: white;
+}
+
+.selected {
+  background: #eee;
+  cursor: default;
+}
