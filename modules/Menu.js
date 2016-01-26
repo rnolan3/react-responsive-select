@@ -10,6 +10,7 @@ export default class Menu extends Component {
       PropTypes.string,
       PropTypes.number
     ]),
+    maxHeight: PropTypes.number,
     onClick: PropTypes.func.isRequired,
     optionKeys: PropTypes.object,
     options: PropTypes.array.isRequired
@@ -92,9 +93,9 @@ export default class Menu extends Component {
   }
 
   render () {
-    const { currentValue, options } = this.props
+    const { currentValue, options, maxHeight } = this.props
     return (
-      <div className={ styles.menu }>
+      <div className={ styles.menu } style={ { maxHeight: maxHeight } }>
         { this.renderOptions(currentValue, options) }
       </div>
     )

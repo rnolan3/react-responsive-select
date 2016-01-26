@@ -16,6 +16,7 @@ export default class ResponsiveSelect extends Component {
       PropTypes.number
     ]),
     id: PropTypes.string,
+    menuPadding: PropTypes.number,
     name: PropTypes.string.isRequired,
     onSelect: PropTypes.func,
     optionKeys: PropTypes.object,
@@ -24,7 +25,8 @@ export default class ResponsiveSelect extends Component {
   };
 
   static defaultProps = {
-    classname: ''
+    classname: '',
+    menuPadding: 25
   };
 
   state = {
@@ -39,10 +41,14 @@ export default class ResponsiveSelect extends Component {
     document.removeEventListener('click', this.handleBlur)
     this.setState({ focus: false })
   };
-  
+
   handleFocus = (e) => {
     e.stopPropagation()
     document.addEventListener('click', this.handleBlur, false)
+    const { menuWrapper } = this.refs
+    const wrapperMetrics = menuWrapper.getBoundingClientRect()
+
+    this._menuMaxHeight = window.innerHeight - wrapperMetrics.top - this.props.menuPadding
     this.setState({ focus: true })
   };
 
@@ -65,6 +71,7 @@ export default class ResponsiveSelect extends Component {
     if (focus) {
       return (<Menu
         currentValue={ current.value }
+        maxHeight={ this._menuMaxHeight }
         onClick={ this.handleSelection }
         optionKeys={ optionKeys }
         options={ options } />)
@@ -83,7 +90,9 @@ export default class ResponsiveSelect extends Component {
           label={ current.label }
           onClick={ this.handleFocus }
           placeholder={ placeholder } />
-        { this.renderMenu() }
+        <div ref="menuWrapper">
+          { this.renderMenu() }
+        </div>
       </div>
     )
   }
