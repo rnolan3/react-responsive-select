@@ -1,4 +1,4 @@
-import styles from './index.scss'
+import styles from './Select.scss'
 import classNames from 'classnames/bind'
 
 import React, { Component, PropTypes } from 'react'
