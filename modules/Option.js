@@ -26,6 +26,11 @@ export default class Option extends Component {
 
   shouldComponentUpdate (nextProps) {
     const { hover, selected } = this.props
+
+    if (nextProps.hover) {
+      this.refs.a.scrollIntoViewIfNeeded()
+    }
+
     return (selected !== nextProps.selected ||
       hover !== nextProps.hover)
   }
@@ -53,11 +58,12 @@ export default class Option extends Component {
     })
 
     return (
-      <div className={ classes }
+      <a className={ classes }
         onClick={ this.handleClick }
-        onMouseOver={ this.handleHover }>
+        onMouseOver={ this.handleHover }
+        ref="a">
         { label }
-      </div>
+      </a>
     )
   }
 

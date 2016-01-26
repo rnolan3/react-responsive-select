@@ -32,19 +32,39 @@ export default class Menu extends Component {
     document.removeEventListener('keydown', this.handleKeyDown)
   }
 
+  _jumping = false;
+
   handleKeyDown = (e) => {
-    if (e.which === 13) {
+    const charCode = e.which
+
+    if (charCode === 13) {
       this.selectOption()
-    } else if (e.which === 40 || e.which === 38) {
+    } else if (charCode === 40 || charCode === 38) {
       this.changeHoverState(e)
       e.preventDefault()
+    } else {
+      const { optionKeys, options } = this.props
+      const optionsLength = options.length
+
+      for (let i = 0; i < optionsLength; i++) {
+        if (options[i][optionKeys.label][0] === String.fromCharCode(charCode)) {
+          this.handleOptionHover(i)
+          this.handleJumping()
+          break
+        }
+      }
     }
   };
 
+  handleJumping = () => {
+    this._jumping = true
+    setTimeout(() => this._jumping = false, 300)
+  };
+
   handleOptionHover = (key) => {
-    this.setState({
-      hover: key
-    })
+    if (!this._jumping) {
+      this.setState({ hover: key })
+    }
   };
 
   selectOption = () => {
