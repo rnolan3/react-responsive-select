@@ -1,4 +1,5 @@
 .menu {
+  -webkit-overflow-scrolling: touch;
   background: white;
   border: 1px solid #ccc;
   left: 0;
@@ -6,4 +7,13 @@
   position: absolute;
   right: 0;
   top: 100%;
+
+  @media screen and (max-width: 1024px) {
+    left: 50%;
+    max-width: 360px;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+  }
 }
