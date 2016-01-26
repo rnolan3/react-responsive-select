@@ -27,6 +27,7 @@
     "react/jsx-sort-props": 1,
     "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": 1,
+
     "react/no-danger": 1,
     "react/no-deprecated": 1,
     "react/no-did-mount-set-state": 1,
@@ -35,8 +36,8 @@
     "react/no-is-mounted": 1,
     "react/no-multi-comp": 1,
     "react/no-set-state": 1,
-    "react/no-string-refs": 1,
     "react/no-unknown-property": 1,
+    
     "react/prefer-es6-class": 1,
     "react/prop-types": 1,
     "react/react-in-jsx-scope": 1,
