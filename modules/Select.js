@@ -1,5 +1,6 @@
 import styles from './Select.scss'
 import classNames from 'classnames/bind'
+import findOptionByValue from './utils/findOptionByValue'
 
 import React, { Component, PropTypes } from 'react'
 import Label from './Label'
@@ -30,12 +31,23 @@ export default class ResponsiveSelect extends Component {
   };
 
   state = {
-    current: {
-      value: this.props.defaultValue || null,
-      label: null
-    },
+    current: findOptionByValue(
+      this.props.defaultValue,
+      this.props.options,
+      this.props.optionKeys) || null,
     focus: false
   };
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.defaultValue !== this.props.defaultValue) {
+      this.setState({
+        current: findOptionByValue(
+          this.props.defaultValue,
+          this.props.options,
+          this.props.optionKeys)
+      })
+    }
+  }
 
   handleBlur = () => {
     document.removeEventListener('click', this.handleBlur)
@@ -85,7 +97,11 @@ export default class ResponsiveSelect extends Component {
 
     return (
       <div className={ classes }>
-        <input id={ id } name={ name } type="text" />
+        <input value={ current.value }
+          id={ id }
+          name={ name }
+          type="text"
+          readOnly />
         <Label
           label={ current.label }
           onClick={ this.handleFocus }
