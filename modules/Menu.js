@@ -1,4 +1,5 @@
 import styles from './Menu.scss'
+import { defaultOptionKeys } from './config'
 
 import React, { Component, PropTypes } from 'react'
 import Option from './Option'
@@ -17,7 +18,7 @@ export default class Menu extends Component {
   };
 
   static defaultProps = {
-    optionKeys: { label: 'label', value: 'value' }
+    optionKeys: defaultOptionKeys
   };
 
   state = {
@@ -100,7 +101,6 @@ export default class Menu extends Component {
 
   renderOptions (currentValue, options) {
     const { optionKeys } = this.props
-
     return options.map((o, k) => <Option
       hover={ k === this.state.hover }
       key={ k }
